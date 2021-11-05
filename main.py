@@ -5,3 +5,7 @@ if __name__ == '__main__':
     dialect = csv.Sniffer().sniff(volcs.read(1000))
     volcs.seek(0)
     reader = csv.DictReader(volcs)
+    rows = []
+    for row in reader:
+        rows.append(row)
+    print(rows)
