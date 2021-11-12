@@ -15,8 +15,10 @@ if __name__ == '__main__':
         location = [row['Latitude'], row['Longitude']]
         mark = folium.Marker(location, icon=folium.Icon(color='red'))
     map = folium.Map(location=(-8.108, 112.922), zoom_start=5, tiles='Stamen Terrain')
-    map.save('data/map1.html')
+    fg = folium.FeatureGroup(name="map")
     for row in rows:
         location = [row['Latitude'], row['Longitude']]
-        mark = folium.Marker(location, icon=folium.Icon(color='red'))
-
+        mark = folium.Marker(location, popup=row['Name'], icon=folium.Icon(color='red'))
+        fg.add_child(mark)
+        map.add_child(fg)
+    map.save('data/map1.html')
